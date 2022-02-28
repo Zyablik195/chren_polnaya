@@ -8,7 +8,12 @@ from random import randint
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setGeometry(200, 200, 700, 500)
+        self.setWindowTitle('Рисование')
+
+        self.pushButton = QPushButton('нарисовать', self)
+        self.pushButton.move(20, 10)
+        self.pushButton.resize(160, 20)
         self.do_paint = False
         self.pushButton.clicked.connect(self.paint)
 
@@ -25,8 +30,8 @@ class MyWidget(QMainWindow):
 
     def draw_flag(self, qp):
         for i in range(6):
-            qp.setBrush(QColor(255, 255, 0))
-            r = randint(40, 100)
+            qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
+            r = randint(30, 80)
             qp.drawEllipse(QPoint(randint(0, 700 - r), randint(0, 500 - r)), r, r)
 
 
